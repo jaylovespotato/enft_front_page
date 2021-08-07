@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Table } from 'semantic-ui-react';
 
 class DaoForm extends Component {
 
@@ -37,50 +38,83 @@ class DaoForm extends Component {
         })
     }
     render() {
+        const style={
+            border: '1px solid white',
+            padding: '4rem',
+            margin: '0rem 0rem 3rem 0rem',
+        }
+
         return (
+            <div style={style} align='center'>
+                    <h1 >REGISTER</h1>
+                    <br></br>
+                <form onSubmit={this.handleSubmit}>
+                    <Table color = 'red' key='red' textAlign='center'>
+                        <Table.Header>
+                            <Table.Row>
+                                <Table.HeaderCell>telegram_id_rep</Table.HeaderCell>
+                                <Table.HeaderCell>eth_address</Table.HeaderCell>
+                                <Table.HeaderCell>underrating_ratio</Table.HeaderCell>
+                                <Table.HeaderCell>price_collapse_ratio</Table.HeaderCell>
+                                <Table.HeaderCell>consent_limit</Table.HeaderCell>
+                                <Table.HeaderCell>index_weight</Table.HeaderCell>
+                                <Table.HeaderCell>REGISTER</Table.HeaderCell>
+                            </Table.Row>
+                        </Table.Header>
 
-            <form onSubmit={this.handleSubmit}>
-                <input placeholder="대표자 텔레그램 ID"
-                name = "telegram_id_rep"
-                onChange={this.handleChange}
-                //이 value는 e.target.value가 아님. 인풋태그에 들어가는 value가 e.target.value임.
-                //인풋 value는 초기화용
-                value={this.state.telegram_id_rep}
-                />
-                
-                <input placeholder="DAO 공동계좌 이더리움 주소"
-                name = "eth_address"
-                onChange={this.handleChange}
-                 value={this.state.eth_address}
-                  />
+                        <Table.Body>
+                            <Table.Row>
+                                <Table.Cell>
+                                    <input placeholder="대표자 텔레그램 ID"
+                                        name="telegram_id_rep"
+                                        onChange={this.handleChange}
+                                        value={this.state.telegram_id_rep}
+                                    />
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <input placeholder="DAO 공동계좌 이더리움 주소"
+                                        name="eth_address"
+                                        onChange={this.handleChange}
+                                        value={this.state.eth_address}
+                                    />
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <input placeholder="감정가 대비 구매 투표 발동 역치"
+                                        name="underrating_ratio"
+                                        onChange={this.handleChange}
+                                        value={this.state.underrating_ratio}
+                                    />
 
-                <input placeholder="감정가 대비 구매 투표 발동 역치"
-                name = "underrating_ratio"
-                onChange={this.handleChange}
-                 value={this.state.underrating_ratio}
-                  />
-
-                <input placeholder="고점 대비 판매 투표 발동 역치"
-                name = "price_collapse_ratio"
-                onChange={this.handleChange}
-                 value={this.state.price_collapse_ratio}
-                  />
-
-                <input placeholder="투표 시행 동의 비율"
-                name = "consent_limit"
-                onChange={this.handleChange}
-                 value={this.state.consent_limit}
-                  />
-
-                <input placeholder="NFT Index 반영 가중치"
-                name = "index_weight"
-                onChange={this.handleChange}
-                 value={this.state.index_weight}
-                  />
-                  
-                <button type = "submit">등록</button>
-                
-            </form>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <input placeholder="고점 대비 판매 투표 발동 역치"
+                                        name="price_collapse_ratio"
+                                        onChange={this.handleChange}
+                                        value={this.state.price_collapse_ratio}
+                                    />
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <input placeholder="투표 시행 동의 비율"
+                                        name="consent_limit"
+                                        onChange={this.handleChange}
+                                        value={this.state.consent_limit}
+                                />
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <input placeholder="NFT Index 반영 가중치"
+                                        name="index_weight"
+                                        onChange={this.handleChange}
+                                        value={this.state.index_weight}
+                                />
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <button type="submit">등록</button>
+                                </Table.Cell>
+                            </Table.Row>
+                        </Table.Body>
+                    </Table>
+                </form>
+            </div>
         );
     }
 }

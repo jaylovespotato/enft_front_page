@@ -18,7 +18,10 @@ class DaoInfo extends Component {
         index_weight: '',
 
     }
-
+static defaultProps={
+        data:[],
+        
+    }
 
     shouldComponentUpdate(nextProps, nextState) {
         if (this.state !== nextState){
@@ -98,7 +101,7 @@ class DaoInfo extends Component {
       }
 
     handleFormSubmit = (e)=>{
-        // const {info, onRemove }= this.props;
+        
         function confirmModal(){
             if (window.confirm("정말 제출을 완료하시겠습니까? 제출을 하시면, 더 이상 변경/삭제가 불가능합니다.")) {
             } 
@@ -114,7 +117,6 @@ class DaoInfo extends Component {
             final_submit: !this.state.final_submit,
         })
         
-        // onRemove(info.id);
         alert(`form 제출 성공!`);
     }
 
@@ -136,137 +138,130 @@ class DaoInfo extends Component {
             border: '1px solid black',
             padding: '4rem',
             margin: '4rem',
-
         }
         return (
-            
-                <div style={style}>
-                    {
-                        editing ? (
+            <div>
+                {
+                    editing ? (
+                        <Table color = 'red' key='red' textAlign='center'>
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell>telegram_id_rep</Table.HeaderCell>
+                                    <Table.HeaderCell>eth_address</Table.HeaderCell>
+                                    <Table.HeaderCell>underrating_ratio</Table.HeaderCell>
+                                    <Table.HeaderCell>price_collapse_ratio</Table.HeaderCell>
+                                    <Table.HeaderCell>consent_limit</Table.HeaderCell>
+                                    <Table.HeaderCell>index_weight</Table.HeaderCell>
+                                    
+
+                                </Table.Row>
+                            </Table.Header>
+
+                            <Table.Body>
+                                <Table.Row>
+                                    <Table.Cell>
+                                        <input 
+                                            name="telegram_id_rep"
+                                            onChange={this.handleChange}
+                                            value={this.state.telegram_id_rep}
+                                        />
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        <input 
+                                            name="eth_address"
+                                            onChange={this.handleChange}
+                                            value={this.state.eth_address}
+                                        />
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        <input 
+                                            name="underrating_ratio"
+                                            onChange={this.handleChange}
+                                            value={this.state.underrating_ratio}
+                                        />
+
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        <input 
+                                            name="price_collapse_ratio"
+                                            onChange={this.handleChange}
+                                            value={this.state.price_collapse_ratio}
+                                        />
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        <input 
+                                            name="consent_limit"
+                                            onChange={this.handleChange}
+                                            value={this.state.consent_limit}
+                                    />
+                                    </Table.Cell>
+                                    <Table.Cell>
+                                        <input 
+                                            name="index_weight"
+                                            onChange={this.handleChange}
+                                            value={this.state.index_weight}
+                                    />
+                                    </Table.Cell>
+                                </Table.Row>
+                            </Table.Body>
+                        </Table>
+                        
+                        
+                    ):(
+                        <form onSubmit={this.handleFormSubmit}>                                
+                            
                             <Table color = 'red' key='red' textAlign='center'>
                                 <Table.Header>
-                                    <Table.Row>
-                                        <Table.HeaderCell>telegram_id_rep</Table.HeaderCell>
-                                        <Table.HeaderCell>eth_address</Table.HeaderCell>
-                                        <Table.HeaderCell>underrating_ratio</Table.HeaderCell>
-                                        <Table.HeaderCell>price_collapse_ratio</Table.HeaderCell>
-                                        <Table.HeaderCell>consent_limit</Table.HeaderCell>
-                                        <Table.HeaderCell>index_weight</Table.HeaderCell>
-                                        
+                                <Table.Row>
+                                    <Table.HeaderCell>telegram_id_rep</Table.HeaderCell>
+                                    <Table.HeaderCell>eth_address</Table.HeaderCell>
+                                    <Table.HeaderCell>underrating_ratio</Table.HeaderCell>
+                                    <Table.HeaderCell>price_collapse_ratio</Table.HeaderCell>
+                                    <Table.HeaderCell>consent_limit</Table.HeaderCell>
+                                    <Table.HeaderCell>index_weight</Table.HeaderCell>
+                                    <Table.HeaderCell>FINAL SUBMIT</Table.HeaderCell>
 
-                                    </Table.Row>
+                                </Table.Row>
                                 </Table.Header>
 
                                 <Table.Body>
-                                    <Table.Row>
-                                        <Table.Cell>
-                                            <input 
-                                                name="telegram_id_rep"
-                                                onChange={this.handleChange}
-                                                value={this.state.telegram_id_rep}
-                                            />
-                                        </Table.Cell>
-                                        <Table.Cell>
-                                            <input 
-                                                name="eth_address"
-                                                onChange={this.handleChange}
-                                                value={this.state.eth_address}
-                                            />
-                                        </Table.Cell>
-                                        <Table.Cell>
-                                            <input 
-                                                name="underrating_ratio"
-                                                onChange={this.handleChange}
-                                                value={this.state.underrating_ratio}
-                                            />
+                                <Table.Row>
+                                    <Table.Cell>{telegram_id_rep}</Table.Cell>
+                                    <Table.Cell>{eth_address}</Table.Cell>
+                                    <Table.Cell>{underrating_ratio}</Table.Cell>
+                                    <Table.Cell>{price_collapse_ratio}</Table.Cell>
+                                    <Table.Cell>{consent_limit}</Table.Cell>
+                                    <Table.Cell>{index_weight}</Table.Cell>
+                                    <Table.Cell>
+                                        {
+                                            final_submit?"":<button type="submit">최종제출</button>
+                                        }
+                                    </Table.Cell>
 
-                                        </Table.Cell>
-                                        <Table.Cell>
-                                            <input 
-                                                name="price_collapse_ratio"
-                                                onChange={this.handleChange}
-                                                value={this.state.price_collapse_ratio}
-                                            />
-                                        </Table.Cell>
-                                        <Table.Cell>
-                                            <input 
-                                                name="consent_limit"
-                                                onChange={this.handleChange}
-                                                value={this.state.consent_limit}
-                                        />
-                                        </Table.Cell>
-                                        <Table.Cell>
-                                            <input 
-                                                name="index_weight"
-                                                onChange={this.handleChange}
-                                                value={this.state.index_weight}
-                                        />
-                                        </Table.Cell>
-                                    </Table.Row>
+                                </Table.Row>
                                 </Table.Body>
                             </Table>
-                           
-                            
-                        ):(
-                                <form onSubmit={this.handleFormSubmit}>                                
-                                    
-                                    <Table color = 'red' key='red' textAlign='center'>
-                                        <Table.Header>
-                                        <Table.Row>
-                                            <Table.HeaderCell>telegram_id_rep</Table.HeaderCell>
-                                            <Table.HeaderCell>eth_address</Table.HeaderCell>
-                                            <Table.HeaderCell>underrating_ratio</Table.HeaderCell>
-                                            <Table.HeaderCell>price_collapse_ratio</Table.HeaderCell>
-                                            <Table.HeaderCell>consent_limit</Table.HeaderCell>
-                                            <Table.HeaderCell>index_weight</Table.HeaderCell>
-                                            <Table.HeaderCell>Fianl Submit</Table.HeaderCell>
-
-                                        </Table.Row>
-                                        </Table.Header>
-
-                                        <Table.Body>
-                                        <Table.Row>
-                                            <Table.Cell>{telegram_id_rep}</Table.Cell>
-                                            <Table.Cell>{eth_address}</Table.Cell>
-                                            <Table.Cell>{underrating_ratio}</Table.Cell>
-                                            <Table.Cell>{price_collapse_ratio}</Table.Cell>
-                                            <Table.Cell>{consent_limit}</Table.Cell>
-                                            <Table.Cell>{index_weight}</Table.Cell>
-                                            <Table.Cell>
-                                                {
-                                                    final_submit?"":<button type="submit">최종제출</button>
-                                                }
-                                            </Table.Cell>
-
-                                        </Table.Row>
-                                        </Table.Body>
-                                    </Table>
-                                     
-
-                                
-                                </form>
+                        </form>
+                    )
+                }
+                    {
+                        final_submit?
+                            <button>
+                                상세 보기
+                            </button>
+                        :(
+                            <div>
+                                <button onClick={this.handleRemove}>삭제
+                                </button>
+                                <button onClick = {this.handleToggleEdit}>
+                                    {
+                                        editing? "적용":"수정"
+                                    }
+                                </button>
+                            </div>
                         )
                     }
-                        {
-                            final_submit?
-                                <button>
-                                    상세 보기
-                                </button>
-                            :(
-                                <div>
-                                    <button onClick={this.handleRemove}>삭제
-                                    </button>
-                                    <button onClick = {this.handleToggleEdit}>
-                                        {
-                                            editing? "적용":"수정"
-                                        }
-                                    </button>
-                               </div>
-                            )
-                        }
-                    
-                </div>
-            
+            </div>
         );
     }
 }

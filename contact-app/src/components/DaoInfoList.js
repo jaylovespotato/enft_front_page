@@ -1,18 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import DaoInfo from './DaoInfo';
 
 
 class DaoInfoList extends Component {
 
     static defaultProps={
-        data:[]
+        data:[],
+        
     }
 
-    
+    handleCopy = ()=>{
+        const {data, onCopy }= this.props;
+        onCopy(data.id);
+    }
+
 
     render() {
-        const { data, onRemove, onUpdate } = this.props;
-
+        const { data, onRemove, onUpdate, finalList } = this.props;
+    
         // data안에 info를 Phoneinfo에 전달해줄건데
         // info 값은 info이고, key는 id.
         const list = data.map(
@@ -24,11 +29,24 @@ class DaoInfoList extends Component {
                 key={info.id} 
                 />)
         )
+
+        const finallist = finalList
+        
+          
         return (
             
-            <div>
-                {list}
-            </div>
+            <Fragment>
+                <div>
+                    {list}
+                </div>
+                <div>
+                    sd란ㅇ란ㅇㄹ
+                </div>
+                <div>
+                    {finallist}
+                </div>
+
+            </Fragment>
         );
     }
 

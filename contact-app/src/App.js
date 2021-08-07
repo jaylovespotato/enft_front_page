@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import DaoForm from './components/DaoForm';
 import DaoInfoList from './components/DaoInfoList';
+
+
 import PageHeader from './components/PageHeader';
 import 'semantic-ui-css/semantic.min.css';
 import { Segment } from 'semantic-ui-react';
@@ -17,11 +19,13 @@ class App extends Component {
       underrating_ratio: '30',
       price_collapse_ratio: '30',
       consent_limit: '50',
-      index_weight: '20',    
-      
+      index_weight: '20',
+      final_submit: false,
     },
-
   ],
+  finalinfo:[],
+
+
   keyword:''
   }
 
@@ -37,7 +41,8 @@ handleCreate= (data) =>{
   this.setState({
     information: information.concat({
       ...data,
-      id:this.id++})
+      id:this.id++,
+      final_submit: false})
   })
 }
 
@@ -56,15 +61,27 @@ handleUpdate = (id, data)=>{
         if (info.id === id){
           return{id,
             ...data,
-
           }
         }
         return info;
       }
-
     )
   })
+}
 
+handleCopy=(id)=>{
+  const {information, finalinfo} = this.state;
+  this.setState({
+    finalinfo: information.map(
+      info=>{
+        if((info.id===id)&(info.final_submit!==false)){
+          return{id,
+          ...info
+        }
+        }return info;
+      }
+    ) 
+  })
 }
 
 
@@ -73,31 +90,45 @@ handleUpdate = (id, data)=>{
     const filteredList = information.filter(
       info => info.telegram_id_rep.indexOf(keyword) !== -1
     );
+
+    const finalList = information.filter(
+      info => info.final_submit !== false
+    );
+
+    const style={
+      border: '1px solid black',
+      padding: '4rem',
+      margin: '4rem',
+  }
+
+
     return (
     <Segment.Group>
       <Segment>
         <PageHeader />
       </Segment> 
       <Segment>
-        여기엔 등록
-        <DaoForm onCreate={this.handleCreate} />
-      </Segment>      
-      <Segment>
-        <div>
-            <p>
-              <input
-                placeholder ="검색할 텔레그램 ID를 입력하세요"
-                onChange = {this.handleChange}
-                value = {keyword}
+      <div style={style}>
+        <DaoForm onCreate={this.handleCreate} />        
+          <div align='center'>
+              <p>
+                <input
+                  placeholder ="검색할 텔레그램 ID를 입력하세요"
+                  onChange = {this.handleChange}
+                  value = {keyword}
+                />
+              </p>
+          <div>
+              <DaoInfoList 
+                data = {filteredList}
+                finaldata = {finalList}
+                onRemove = {this.handleRemove}
+                onUpdate = {this.handleUpdate}
+                onCopy={this.handleCopy}
+                
               />
-            </p>
-            <DaoInfoList 
-            
-            data = {filteredList}
-            
-            onRemove = {this.handleRemove}
-            onUpdate = {this.handleUpdate}
-            />
+          </div>     
+          </div>
         </div>
       </Segment>
     </Segment.Group>
