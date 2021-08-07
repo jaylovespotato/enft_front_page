@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import PhoneInfo from './PhoneInfo';
+import DaoInfo from './DaoInfo';
 
 
-class PhoneInfoList extends Component {
+class DaoInfoList extends Component {
 
     static defaultProps={
         data:[]
     }
 
+    
 
     render() {
         const { data, onRemove, onUpdate } = this.props;
@@ -16,7 +17,7 @@ class PhoneInfoList extends Component {
         // info 값은 info이고, key는 id.
         const list = data.map(
             info => (
-                <PhoneInfo 
+                <DaoInfo 
                 onRemove = {onRemove}
                 onUpdate = {onUpdate}
                 info={info} 
@@ -33,4 +34,4 @@ class PhoneInfoList extends Component {
 
 }
 
-export default PhoneInfoList;
+export default DaoInfoList;

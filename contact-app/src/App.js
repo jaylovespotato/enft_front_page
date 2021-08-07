@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
-import PhoneForm from './components/PhoneForm';
-import PhoneInfoList from './components/PhoneInfoList';
+import React, { Component, Fragment } from 'react';
+import DaoForm from './components/DaoForm';
+import DaoInfoList from './components/DaoInfoList';
+import PageHeader from './components/PageHeader';
+
 
 
 class App extends Component {
@@ -10,20 +12,33 @@ class App extends Component {
   information:[
     {
       id:0,
-      name: '홍길동',
-      phone: '010-0000-0001'
+      telegram_id_rep: '낭만감자',
+      eth_address: '0x23123',
+      underrating_ratio: '30',
+      price_collapse_ratio: '30',
+      consent_limit: '50',
+      index_weight: '20',    
+      
     },
 
     {
       id:1,
-      name: '김동길',
-      phone: '010-1111-1111'
+      telegram_id_rep: '맛있는감자',
+      eth_address: '0x1111111',
+      underrating_ratio: '20',
+      price_collapse_ratio: '20',
+      consent_limit: '50',
+      index_weight: '0',      
     },
 
     {
       id:2,
-      name: '정동진',
-      phone: '010-2222-2222'
+      telegram_id_rep: '부산감자',
+      eth_address: '0x333333',
+      underrating_ratio: '45',
+      price_collapse_ratio: '45',
+      consent_limit: '50',
+      index_weight: '50',      
     },
 
 
@@ -39,11 +54,9 @@ handleChange = (e) => {
   }
 
 handleCreate= (data) =>{
-  // 비구조할당
-
-  // const {information} = this.state;
+  const {information} = this.state;
   this.setState({
-    information: this.state.information.concat({
+    information: information.concat({
       ...data,
       id:this.id++})
   })
@@ -79,30 +92,39 @@ handleUpdate = (id, data)=>{
   render() {
     const { information, keyword} = this.state;
     const filteredList = information.filter(
-      info => info.name.indexOf(keyword) !== -1
+      info => info.telegram_id_rep.indexOf(keyword) !== -1
     );
     return (
-      <div>
-        <PhoneForm onCreate={this.handleCreate} />
-        {/* {JSON.stringify(this.state.information)} */}
-        <p>
-          <input
-            placeholder ="검색할 이름을 입력하세요"
-            onChange = {this.handleChange}
-            value = {keyword}
-            
-          />
+      <Fragment>
+        {/* Header */}
+        <div>
+          <PageHeader />
+        </div>
 
-        </p>
-        <PhoneInfoList 
-        // data = {this.state.information}
-        data = {filteredList}
-        
-        onRemove = {this.handleRemove}
-        onUpdate = {this.handleUpdate}
-         />
-        
-      </div>
+
+         {/* DAO 내용} */}
+        <div>
+          <DaoForm onCreate={this.handleCreate} />
+          {/* {JSON.stringify(this.state.information)} */}
+          <p>
+            <input
+              placeholder ="검색할 텔레그램 ID를 입력하세요"
+              onChange = {this.handleChange}
+              value = {keyword}
+              
+            />
+
+          </p>
+          <DaoInfoList 
+          // data = {this.state.information}
+          data = {filteredList}
+          
+          onRemove = {this.handleRemove}
+          onUpdate = {this.handleUpdate}
+          />
+          
+        </div>
+      </Fragment>
     );
   }
 }
