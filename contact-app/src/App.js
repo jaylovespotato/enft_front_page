@@ -12,7 +12,7 @@ class App extends Component {
   information:[
     {
       id:0,
-      telegram_id_rep: '낭만감자',
+      telegram_id_rep: '부산감자',
       eth_address: '0x23123',
       underrating_ratio: '30',
       price_collapse_ratio: '30',
@@ -23,7 +23,7 @@ class App extends Component {
 
     {
       id:1,
-      telegram_id_rep: '맛있는감자',
+      telegram_id_rep: '싹이난감자',
       eth_address: '0x1111111',
       underrating_ratio: '20',
       price_collapse_ratio: '20',
@@ -33,7 +33,7 @@ class App extends Component {
 
     {
       id:2,
-      telegram_id_rep: '부산감자',
+      telegram_id_rep: '낭만감자',
       eth_address: '0x333333',
       underrating_ratio: '45',
       price_collapse_ratio: '45',
@@ -100,6 +100,8 @@ handleUpdate = (id, data)=>{
         <div>
           <PageHeader />
         </div>
+
+        <br></br>
 
 
          {/* DAO 내용} */}

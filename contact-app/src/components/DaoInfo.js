@@ -143,46 +143,69 @@ class DaoInfo extends Component {
                 <div style={style}>
                     {
                         editing ? (
+                            <Table color = 'red' key='red'>
+                                <Table.Header>
+                                    <Table.Row>
+                                        <Table.HeaderCell>telegram_id_rep</Table.HeaderCell>
+                                        <Table.HeaderCell>eth_address</Table.HeaderCell>
+                                        <Table.HeaderCell>underrating_ratio</Table.HeaderCell>
+                                        <Table.HeaderCell>price_collapse_ratio</Table.HeaderCell>
+                                        <Table.HeaderCell>consent_limit</Table.HeaderCell>
+                                        <Table.HeaderCell>index_weight</Table.HeaderCell>
+                                        
 
-                            <Fragment>
-                                <div><input 
-                                        name="telegram_id_rep"
-                                        onChange={this.handleChange}
-                                        value={this.state.telegram_id_rep}
-                                />
-                                </div>
-                                <div><input 
-                                        name="eth_address"
-                                        onChange={this.handleChange}
-                                        value={this.state.eth_address}
-                                />
-                                </div>
-                                <div><input 
-                                        name="underrating_ratio"
-                                        onChange={this.handleChange}
-                                        value={this.state.underrating_ratio}
-                                />
-                                </div>
-                                <div><input 
-                                        name="price_collapse_ratio"
-                                        onChange={this.handleChange}
-                                        value={this.state.price_collapse_ratio}
-                                />
-                                </div>
-                                <div><input 
-                                        name="consent_limit"
-                                        onChange={this.handleChange}
-                                        value={this.state.consent_limit}
-                                />
-                                </div>
-                                <div><input 
-                                        name="index_weight"
-                                        onChange={this.handleChange}
-                                        value={this.state.index_weight}
-                                />
-                                </div>
+                                    </Table.Row>
+                                </Table.Header>
 
-                            </Fragment>
+                                <Table.Body>
+                                    <Table.Row>
+                                        <Table.Cell>
+                                            <input 
+                                                name="telegram_id_rep"
+                                                onChange={this.handleChange}
+                                                value={this.state.telegram_id_rep}
+                                            />
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            <input 
+                                                name="eth_address"
+                                                onChange={this.handleChange}
+                                                value={this.state.eth_address}
+                                            />
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            <input 
+                                                name="underrating_ratio"
+                                                onChange={this.handleChange}
+                                                value={this.state.underrating_ratio}
+                                            />
+
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            <input 
+                                                name="price_collapse_ratio"
+                                                onChange={this.handleChange}
+                                                value={this.state.price_collapse_ratio}
+                                            />
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            <input 
+                                                name="consent_limit"
+                                                onChange={this.handleChange}
+                                                value={this.state.consent_limit}
+                                        />
+                                        </Table.Cell>
+                                        <Table.Cell>
+                                            <input 
+                                                name="index_weight"
+                                                onChange={this.handleChange}
+                                                value={this.state.index_weight}
+                                        />
+                                        </Table.Cell>
+                                    </Table.Row>
+                                </Table.Body>
+                            </Table>
+                           
                             
                         ):(
                                 <form onSubmit={this.handleFormSubmit}>                                
@@ -196,6 +219,7 @@ class DaoInfo extends Component {
                                             <Table.HeaderCell>price_collapse_ratio</Table.HeaderCell>
                                             <Table.HeaderCell>consent_limit</Table.HeaderCell>
                                             <Table.HeaderCell>index_weight</Table.HeaderCell>
+                                            <Table.HeaderCell>Fianl Submit</Table.HeaderCell>
 
                                         </Table.Row>
                                         </Table.Header>
@@ -208,15 +232,16 @@ class DaoInfo extends Component {
                                             <Table.Cell>{price_collapse_ratio}</Table.Cell>
                                             <Table.Cell>{consent_limit}</Table.Cell>
                                             <Table.Cell>{index_weight}</Table.Cell>
+                                            <Table.Cell>
+                                                {
+                                                    final_submit?"":<button type="submit">최종제출</button>
+                                                }
+                                            </Table.Cell>
 
                                         </Table.Row>
                                         </Table.Body>
                                     </Table>
-                                        <div>
-                                            {
-                                            final_submit?"":<button type="submit">최종제출</button>
-                                            }
-                                        </div>
+                                     
 
                                 
                                 </form>
