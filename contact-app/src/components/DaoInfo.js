@@ -143,7 +143,7 @@ class DaoInfo extends Component {
                 <div style={style}>
                     {
                         editing ? (
-                            <Table color = 'red' key='red'>
+                            <Table color = 'red' key='red' textAlign='center'>
                                 <Table.Header>
                                     <Table.Row>
                                         <Table.HeaderCell>telegram_id_rep</Table.HeaderCell>
@@ -210,7 +210,7 @@ class DaoInfo extends Component {
                         ):(
                                 <form onSubmit={this.handleFormSubmit}>                                
                                     
-                                    <Table color = 'red' key='red'>
+                                    <Table color = 'red' key='red' textAlign='center'>
                                         <Table.Header>
                                         <Table.Row>
                                             <Table.HeaderCell>telegram_id_rep</Table.HeaderCell>

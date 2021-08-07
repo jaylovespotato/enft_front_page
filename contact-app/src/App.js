@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 import DaoForm from './components/DaoForm';
 import DaoInfoList from './components/DaoInfoList';
 import PageHeader from './components/PageHeader';
-
-
+import 'semantic-ui-css/semantic.min.css';
+import { Segment } from 'semantic-ui-react';
 
 class App extends Component {
 
@@ -20,27 +20,6 @@ class App extends Component {
       index_weight: '20',    
       
     },
-
-    {
-      id:1,
-      telegram_id_rep: '싹이난감자',
-      eth_address: '0x1111111',
-      underrating_ratio: '20',
-      price_collapse_ratio: '20',
-      consent_limit: '50',
-      index_weight: '0',      
-    },
-
-    {
-      id:2,
-      telegram_id_rep: '낭만감자',
-      eth_address: '0x333333',
-      underrating_ratio: '45',
-      price_collapse_ratio: '45',
-      consent_limit: '50',
-      index_weight: '50',      
-    },
-
 
   ],
   keyword:''
@@ -95,40 +74,35 @@ handleUpdate = (id, data)=>{
       info => info.telegram_id_rep.indexOf(keyword) !== -1
     );
     return (
-      <Fragment>
-        {/* Header */}
+    <Segment.Group>
+      <Segment>
+        <PageHeader />
+      </Segment> 
+      <Segment>
+        여기엔 등록
+        <DaoForm onCreate={this.handleCreate} />
+      </Segment>      
+      <Segment>
         <div>
-          <PageHeader />
-        </div>
-
-        <br></br>
-
-
-         {/* DAO 내용} */}
-        <div>
-          <DaoForm onCreate={this.handleCreate} />
-          {/* {JSON.stringify(this.state.information)} */}
-          <p>
-            <input
-              placeholder ="검색할 텔레그램 ID를 입력하세요"
-              onChange = {this.handleChange}
-              value = {keyword}
-              
+            <p>
+              <input
+                placeholder ="검색할 텔레그램 ID를 입력하세요"
+                onChange = {this.handleChange}
+                value = {keyword}
+              />
+            </p>
+            <DaoInfoList 
+            
+            data = {filteredList}
+            
+            onRemove = {this.handleRemove}
+            onUpdate = {this.handleUpdate}
             />
-
-          </p>
-          <DaoInfoList 
-          // data = {this.state.information}
-          data = {filteredList}
-          
-          onRemove = {this.handleRemove}
-          onUpdate = {this.handleUpdate}
-          />
-          
         </div>
-      </Fragment>
+      </Segment>
+    </Segment.Group>
     );
+    }
   }
-}
 
 export default App;
