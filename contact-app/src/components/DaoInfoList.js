@@ -9,14 +9,8 @@ class DaoInfoList extends Component {
         
     }
 
-    handleCopy = ()=>{
-        const {data, onCopy }= this.props;
-        onCopy(data.id);
-    }
-
-
     render() {
-        const { data, onRemove, onUpdate, finalList } = this.props;
+        const { data, onRemove, onUpdate } = this.props;
     
         // data안에 info를 Phoneinfo에 전달해줄건데
         // info 값은 info이고, key는 id.
@@ -29,8 +23,6 @@ class DaoInfoList extends Component {
                 key={info.id} 
                 />)
         )
-
-        const finallist = finalList
         
           
         return (
@@ -39,13 +31,6 @@ class DaoInfoList extends Component {
                 <div>
                     {list}
                 </div>
-                <div>
-                    sd란ㅇ란ㅇㄹ
-                </div>
-                <div>
-                    {finallist}
-                </div>
-
             </Fragment>
         );
     }

@@ -1,6 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { post } from 'axios';
 import { Table } from 'semantic-ui-react';
+import DetailButton from './DetailButton'
+
 class DaoInfo extends Component {
 
     state = {
@@ -51,6 +53,7 @@ static defaultProps={
                 price_collapse_ratio: this.state.price_collapse_ratio,
                 consent_limit: this.state.consent_limit,
                 index_weight: this.state.index_weight,
+                
 
             })
         } else{
@@ -61,6 +64,7 @@ static defaultProps={
                 price_collapse_ratio: info.price_collapse_ratio,
                 consent_limit: info.consent_limit,
                 index_weight: info.index_weight,
+                
 
             })
         }
@@ -114,10 +118,12 @@ static defaultProps={
         });
 
         this.setState({
-            final_submit: !this.state.final_submit,
+            // final_submit: !this.state.final_submit,
+            final_submit: true,
         })
-        
         alert(`form 제출 성공!`);
+        
+        
     }
 
 
@@ -134,11 +140,7 @@ static defaultProps={
 
         const { editing, final_submit } = this.state;
 
-        const style={
-            border: '1px solid black',
-            padding: '4rem',
-            margin: '4rem',
-        }
+    
         return (
             <div>
                 {
@@ -246,9 +248,14 @@ static defaultProps={
                 }
                     {
                         final_submit?
-                            <button>
-                                상세 보기
-                            </button>
+                            
+                            <DetailButton 
+                            id = {id}
+                            telegram_id_rep={telegram_id_rep}
+                            
+                            />
+                                // <button onClick = {this.handleDetailClick}>상세 보기</button>
+                            
                         :(
                             <div>
                                 <button onClick={this.handleRemove}>삭제
