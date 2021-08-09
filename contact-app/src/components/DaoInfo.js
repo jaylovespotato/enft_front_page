@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { post } from 'axios';
 import { Table } from 'semantic-ui-react';
-import DetailButton from './DetailButton'
+import ButtonForDetail from './ButtonForDetail';
 
 class DaoInfo extends Component {
 
@@ -249,7 +249,7 @@ static defaultProps={
                     {
                         final_submit?
                             
-                            <DetailButton 
+                            <ButtonForDetail 
                             id = {id}
                             telegram_id_rep={telegram_id_rep}
                             

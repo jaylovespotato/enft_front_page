@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Main from './components/Main';
+import PageMain from './components/PageMain';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import DaoDetail from './components/DaoDetail';
+import PageDaoDetail from './components/PageDaoDetail';
 
 class App extends Component {
  
@@ -10,9 +10,9 @@ class App extends Component {
 
         <Router>
             <Switch>
-                <Route exact path='/' component={Main}/>
-                <Route exact path='/detail' component={DaoDetail}/>
-                <Route exact path='/detail/:id' component={DaoDetail}/>
+                <Route exact path='/' component={PageMain}/>
+                <Route exact path='/detail' component={PageDaoDetail}/>
+                <Route exact path='/detail/:id' component={PageDaoDetail}/>
         
             </Switch>
         </Router>
