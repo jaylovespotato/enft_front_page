@@ -3,6 +3,7 @@ import { post } from 'axios';
 import { Table } from 'semantic-ui-react';
 import ButtonForDetail from './ButtonForDetail';
 
+
 class DaoInfo extends Component {
 
     state = {
@@ -35,6 +36,7 @@ static defaultProps={
 
     handleRemove = ()=>{
         const {info, onRemove }= this.props;
+        console.log(onRemove)
         onRemove(info.id);
     }
 
@@ -56,6 +58,7 @@ static defaultProps={
                 
 
             })
+            console.log(onUpdate)
         } else{
             this.setState({
                 telegram_id_rep: info.telegram_id_rep,
@@ -105,6 +108,7 @@ static defaultProps={
       }
 
     handleFormSubmit = (e)=>{
+        const {info, onSubmit} = this.props
         
         function confirmModal(){
             if (window.confirm("정말 제출을 완료하시겠습니까? 제출을 하시면, 더 이상 변경/삭제가 불가능합니다.")) {
@@ -112,15 +116,24 @@ static defaultProps={
         }
 
         confirmModal()
+
         e.preventDefault();
+        
+        console.log(onSubmit)
+        onSubmit(info);
         this.addFormSet().then((response) => {
             console.log(response.data);
         });
+
+        
 
         this.setState({
             // final_submit: !this.state.final_submit,
             final_submit: true,
         })
+
+        
+
         alert(`form 제출 성공!`);
         
         
@@ -140,12 +153,18 @@ static defaultProps={
 
         const { editing, final_submit } = this.state;
 
-    
+        const style={
+            border: '1px solid white',
+            padding: '2rem',
+            margin: '0rem 0rem 1rem 0rem',
+        }
+
         return (
-            <div>
+            <div style={style} align='center'>
+                    
                 {
                     editing ? (
-                        <Table color = 'red' key='red' textAlign='center'>
+                        <Table textAlign='center'>
                             <Table.Header>
                                 <Table.Row>
                                     <Table.HeaderCell>telegram_id_rep</Table.HeaderCell>
@@ -215,13 +234,13 @@ static defaultProps={
                             <Table color = 'red' key='red' textAlign='center'>
                                 <Table.Header>
                                 <Table.Row>
-                                    <Table.HeaderCell>telegram_id_rep</Table.HeaderCell>
-                                    <Table.HeaderCell>eth_address</Table.HeaderCell>
-                                    <Table.HeaderCell>underrating_ratio</Table.HeaderCell>
-                                    <Table.HeaderCell>price_collapse_ratio</Table.HeaderCell>
-                                    <Table.HeaderCell>consent_limit</Table.HeaderCell>
-                                    <Table.HeaderCell>index_weight</Table.HeaderCell>
-                                    <Table.HeaderCell>FINAL SUBMIT</Table.HeaderCell>
+                                    <Table.HeaderCell width={2.5}>telegram_id_rep</Table.HeaderCell>
+                                    <Table.HeaderCell width={2.5}>eth_address</Table.HeaderCell>
+                                    <Table.HeaderCell width={2.5}>underrating_ratio</Table.HeaderCell>
+                                    <Table.HeaderCell width={2.5}>price_collapse_ratio</Table.HeaderCell>
+                                    <Table.HeaderCell width={2.5}>consent_limit</Table.HeaderCell>
+                                    <Table.HeaderCell width={2.5}>index_weight</Table.HeaderCell>
+                                    <Table.HeaderCell width={3}> </Table.HeaderCell>
 
                                 </Table.Row>
                                 </Table.Header>
@@ -236,7 +255,21 @@ static defaultProps={
                                     <Table.Cell>{index_weight}</Table.Cell>
                                     <Table.Cell>
                                         {
-                                            final_submit?"":<button type="submit">최종제출</button>
+                                            final_submit?
+                                            <h3>Submitted</h3>
+                                            :
+                                            // <ButtonForFinalList
+                                            //     id = {id}
+                                            //     telegram_id_rep={telegram_id_rep}
+                                            //     eth_address={eth_address}
+                                            //     underrating_ratio={underrating_ratio}
+                                            //     price_collapse_ratio={price_collapse_ratio}
+                                            //     consent_limit={consent_limit}
+                                            //     index_weight={index_weight}
+                                            // />
+
+                                                <button type="submit">FINAL SUBMIT</button>
+
                                         }
                                     </Table.Cell>
 
@@ -250,9 +283,13 @@ static defaultProps={
                         final_submit?
                             
                             <ButtonForDetail 
-                            id = {id}
-                            telegram_id_rep={telegram_id_rep}
-                            
+                                id = {id}
+                                telegram_id_rep={telegram_id_rep}
+                                eth_address={eth_address}
+                                underrating_ratio={underrating_ratio}
+                                price_collapse_ratio={price_collapse_ratio}
+                                consent_limit={consent_limit}
+                                index_weight={index_weight}
                             />
                                 // <button onClick = {this.handleDetailClick}>상세 보기</button>
                             

@@ -10,7 +10,7 @@ class DaoInfoList extends Component {
     }
 
     render() {
-        const { data, onRemove, onUpdate } = this.props;
+        const { data, onRemove, onUpdate, onSubmit } = this.props;
     
         // data안에 info를 Phoneinfo에 전달해줄건데
         // info 값은 info이고, key는 id.
@@ -19,6 +19,7 @@ class DaoInfoList extends Component {
                 <DaoInfo 
                 onRemove = {onRemove}
                 onUpdate = {onUpdate}
+                onSubmit = {onSubmit}
                 info={info} 
                 key={info.id} 
                 />)

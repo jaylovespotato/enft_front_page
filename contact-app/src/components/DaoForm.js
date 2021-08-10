@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Form } from 'semantic-ui-react';
 
 class DaoForm extends Component {
 
@@ -46,19 +46,19 @@ class DaoForm extends Component {
 
         return (
             <div style={style} align='center'>
-                    <h1 >REGISTER</h1>
+                    <h1 >Step1. Proposal</h1>
                     <br></br>
-                <form onSubmit={this.handleSubmit}>
-                    <Table color = 'red' key='red' textAlign='center'>
+                <Form onSubmit={this.handleSubmit}>
+                    <Table color = 'blue' textAlign='center'>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell>telegram_id_rep</Table.HeaderCell>
-                                <Table.HeaderCell>eth_address</Table.HeaderCell>
-                                <Table.HeaderCell>underrating_ratio</Table.HeaderCell>
-                                <Table.HeaderCell>price_collapse_ratio</Table.HeaderCell>
-                                <Table.HeaderCell>consent_limit</Table.HeaderCell>
-                                <Table.HeaderCell>index_weight</Table.HeaderCell>
-                                <Table.HeaderCell>REGISTER</Table.HeaderCell>
+                                <Table.HeaderCell width={2.5}>telegram_id_rep</Table.HeaderCell>
+                                <Table.HeaderCell width={2.5}>eth_address</Table.HeaderCell>
+                                <Table.HeaderCell width={2.5}>underrating_ratio</Table.HeaderCell>
+                                <Table.HeaderCell width={2.5}>price_collapse_ratio</Table.HeaderCell>
+                                <Table.HeaderCell width={2.5}>consent_limit</Table.HeaderCell>
+                                <Table.HeaderCell width={2.5}>index_weight</Table.HeaderCell>
+                                <Table.HeaderCell width={3}></Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
 
@@ -69,6 +69,7 @@ class DaoForm extends Component {
                                         name="telegram_id_rep"
                                         onChange={this.handleChange}
                                         value={this.state.telegram_id_rep}
+                                        
                                     />
                                 </Table.Cell>
                                 <Table.Cell>
@@ -76,6 +77,7 @@ class DaoForm extends Component {
                                         name="eth_address"
                                         onChange={this.handleChange}
                                         value={this.state.eth_address}
+                                        
                                     />
                                 </Table.Cell>
                                 <Table.Cell>
@@ -83,6 +85,7 @@ class DaoForm extends Component {
                                         name="underrating_ratio"
                                         onChange={this.handleChange}
                                         value={this.state.underrating_ratio}
+                                        
                                     />
 
                                 </Table.Cell>
@@ -108,12 +111,12 @@ class DaoForm extends Component {
                                 />
                                 </Table.Cell>
                                 <Table.Cell>
-                                    <button type="submit">등록</button>
+                                    <button type="submit">PROPOSAL</button>
                                 </Table.Cell>
                             </Table.Row>
                         </Table.Body>
                     </Table>
-                </form>
+                </Form>
             </div>
         );
     }
