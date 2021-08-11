@@ -66,6 +66,7 @@ static defaultProps={
                 price_collapse_ratio: info.price_collapse_ratio,
                 consent_limit: info.consent_limit,
                 index_weight: info.index_weight,
+
                 
 
             })
@@ -107,7 +108,7 @@ static defaultProps={
       }
 
     handleFormSubmit = (e)=> {
-        const {info} = this.props;
+        const {info, onRemove} = this.props;
         function confirmModal(){
             if (window.confirm("정말 제출을 완료하시겠습니까? 제출을 하시면, 더 이상 변경/삭제가 불가능합니다.")) {
             } 
@@ -116,25 +117,16 @@ static defaultProps={
         confirmModal();
 
         e.preventDefault();
-        
-        
-        this.setState({
-            finaldata: info.id
-        })
-        
-        
         this.addFormSet().then((response) => {
             console.log(response.data);
         });
-
         this.setState({
-            final_submit: !this.state.final_submit,
-            // final_submit: true,
-
+            final_submit: true
         })
-
+        this.props.onFinalCreate(info);
+        // onRemove(info.id)
         alert(`form 제출 성공!`);
-        
+     
         
     }
 
@@ -142,18 +134,19 @@ static defaultProps={
     render() {
         
         const {
-             telegram_id_rep, 
+            id,
+            telegram_id_rep, 
             eth_address, 
             underrating_ratio, 
             price_collapse_ratio,
             consent_limit,
             index_weight,
-            id,
+            final_submit,
              } = this.props.info;
 
       
         
-        const { editing, final_submit } = this.state;
+        const { editing } = this.state;
 
         const style={
             border: '1px solid white',
@@ -260,8 +253,19 @@ static defaultProps={
                                             final_submit?
                                             <h3>Submitted</h3>
                                             :
+                                            (
+                                            <div>
+                                                <button onClick={this.handleRemove}>삭제
+                                                </button>
+                                                <button onClick = {this.handleToggleEdit}>
+                                                    {
+                                                        editing? "적용":"수정"
+                                                    }
+                                                </button>
+                                            
                                             <button type="submit" >FINAL SUBMIT</button>
-
+                                            </div>
+                                            )
                                         }
                                     </Table.Cell>
 
@@ -284,20 +288,7 @@ static defaultProps={
                                 consent_limit={consent_limit}
                                 index_weight={index_weight}
                             />)
-                                // <button onClick = {this.handleDetailClick}>상세 보기</button>
-                                
-                            
-                        :(
-                            <div>
-                                <button onClick={this.handleRemove}>삭제
-                                </button>
-                                <button onClick = {this.handleToggleEdit}>
-                                    {
-                                        editing? "적용":"수정"
-                                    }
-                                </button>
-                            </div>
-                        )
+                        :("")
                     }
             </div>
         );

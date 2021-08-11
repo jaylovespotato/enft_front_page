@@ -10,26 +10,29 @@ class DaoInfoList extends Component {
     }
 
     render() {
-        const { data, onRemove, onUpdate } = this.props;
+        const { data, onRemove, onUpdate, onFinalCreate } = this.props;
     
+        
+  
         // data안에 info를 Phoneinfo에 전달해줄건데
         // info 값은 info이고, key는 id.
-        const list = data.map(
+        const naivelist = data.map(
             info => (
                 <DaoInfo 
                 onRemove = {onRemove}
                 onUpdate = {onUpdate}
+                onFinalCreate = {onFinalCreate}
                 info={info} 
                 key={info.id} 
                 />)
         )
-        
-          
+
+
         return (
             
             <Fragment>
                 <div>
-                    {list}
+                  {naivelist}
                 </div>
             </Fragment>
         );

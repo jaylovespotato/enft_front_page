@@ -8,10 +8,8 @@ class PageHeader extends Component {
 
 
         return (            
-        <Segment inverted size="tiny">
-            <Header as = 'h2' textAlign='center' >DAO Register Page</Header>
-            <Header as = 'h1' color='red' textAlign="center"> ♦ </Header>
-            <Header textAlign='center' as = 'h4' >@ENFT</Header>        
+        <Segment size="tiny">
+            <Header as = 'h1' color='blue' textAlign="center"> DAO MANAGEMENT </Header>
         </Segment>
         );
     }

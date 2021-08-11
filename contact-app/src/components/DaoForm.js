@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Form } from 'semantic-ui-react';
+import { Table, Form, Input } from 'semantic-ui-react';
 
 class DaoForm extends Component {
 
@@ -15,6 +15,7 @@ class DaoForm extends Component {
         consent_limit: '',
         // reflection on NFT-index which explains overall NFT market situation
         index_weight: '',
+        final_submit: false,
 
     }
 
@@ -34,19 +35,20 @@ class DaoForm extends Component {
             underrating_ratio: '',
             price_collapse_ratio: '',
             consent_limit: '',
-            index_weight: '',    
+            index_weight: '',   
+            final_submit: false, 
         })
     }
     render() {
         const style={
-            border: '1px solid white',
-            padding: '4rem',
-            margin: '0rem 0rem 3rem 0rem',
+            border: '0.2rem',
+            padding: '1rem',
+            margin: '0rem 0rem 1rem 0rem',
         }
 
         return (
-            <div style={style} align='center'>
-                    <h1 >Step1. Proposal</h1>
+            <div style={style} align='left'>
+                    <h1 >#1. Proposal</h1>
                     <br></br>
                 <Form onSubmit={this.handleSubmit}>
                     <Table color = 'blue' textAlign='center'>
@@ -58,7 +60,8 @@ class DaoForm extends Component {
                                 <Table.HeaderCell width={2.5}>price_collapse_ratio</Table.HeaderCell>
                                 <Table.HeaderCell width={2.5}>consent_limit</Table.HeaderCell>
                                 <Table.HeaderCell width={2.5}>index_weight</Table.HeaderCell>
-                                <Table.HeaderCell width={3}></Table.HeaderCell>
+                                <Table.HeaderCell width={2.5}>Submitted</Table.HeaderCell>
+                                <Table.HeaderCell width={0.1}></Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
 
@@ -108,14 +111,21 @@ class DaoForm extends Component {
                                         name="index_weight"
                                         onChange={this.handleChange}
                                         value={this.state.index_weight}
-                                />
+                                    />
                                 </Table.Cell>
+                                <br></br>
+                                Not Yet
+                                    <input 
+                                        type = "hidden"                             
+                                        name="final_submit"
+                                        value={this.state.final_submit} />
                                 <Table.Cell>
                                     <button type="submit">PROPOSAL</button>
                                 </Table.Cell>
                             </Table.Row>
                         </Table.Body>
                     </Table>
+
                 </Form>
             </div>
         );
