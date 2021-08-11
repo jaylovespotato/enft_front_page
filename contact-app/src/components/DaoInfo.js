@@ -19,10 +19,10 @@ class DaoInfo extends Component {
         consent_limit: '',
         // reflection on NFT-index which explains overall NFT market situation
         index_weight: '',
-
     }
 static defaultProps={
         data:[],
+        
         
     }
 
@@ -36,7 +36,6 @@ static defaultProps={
 
     handleRemove = ()=>{
         const {info, onRemove }= this.props;
-        console.log(onRemove)
         onRemove(info.id);
     }
 
@@ -107,32 +106,32 @@ static defaultProps={
         return post(url, formData, config);
       }
 
-    handleFormSubmit = (e)=>{
-        const {info, onSubmit} = this.props
-        
+    handleFormSubmit = (e)=> {
+        const {info} = this.props;
         function confirmModal(){
             if (window.confirm("정말 제출을 완료하시겠습니까? 제출을 하시면, 더 이상 변경/삭제가 불가능합니다.")) {
             } 
         }
 
-        confirmModal()
+        confirmModal();
 
         e.preventDefault();
         
-        console.log(onSubmit)
-        onSubmit(info);
+        
+        this.setState({
+            finaldata: info.id
+        })
+        
+        
         this.addFormSet().then((response) => {
             console.log(response.data);
         });
 
-        
-
         this.setState({
-            // final_submit: !this.state.final_submit,
-            final_submit: true,
-        })
+            final_submit: !this.state.final_submit,
+            // final_submit: true,
 
-        
+        })
 
         alert(`form 제출 성공!`);
         
@@ -142,7 +141,8 @@ static defaultProps={
 
     render() {
         
-        const { telegram_id_rep, 
+        const {
+             telegram_id_rep, 
             eth_address, 
             underrating_ratio, 
             price_collapse_ratio,
@@ -151,6 +151,8 @@ static defaultProps={
             id,
              } = this.props.info;
 
+      
+        
         const { editing, final_submit } = this.state;
 
         const style={
@@ -258,17 +260,7 @@ static defaultProps={
                                             final_submit?
                                             <h3>Submitted</h3>
                                             :
-                                            // <ButtonForFinalList
-                                            //     id = {id}
-                                            //     telegram_id_rep={telegram_id_rep}
-                                            //     eth_address={eth_address}
-                                            //     underrating_ratio={underrating_ratio}
-                                            //     price_collapse_ratio={price_collapse_ratio}
-                                            //     consent_limit={consent_limit}
-                                            //     index_weight={index_weight}
-                                            // />
-
-                                                <button type="submit">FINAL SUBMIT</button>
+                                            <button type="submit" >FINAL SUBMIT</button>
 
                                         }
                                     </Table.Cell>
@@ -281,8 +273,9 @@ static defaultProps={
                 }
                     {
                         final_submit?
-                            
+                            (
                             <ButtonForDetail 
+                                
                                 id = {id}
                                 telegram_id_rep={telegram_id_rep}
                                 eth_address={eth_address}
@@ -290,8 +283,9 @@ static defaultProps={
                                 price_collapse_ratio={price_collapse_ratio}
                                 consent_limit={consent_limit}
                                 index_weight={index_weight}
-                            />
+                            />)
                                 // <button onClick = {this.handleDetailClick}>상세 보기</button>
+                                
                             
                         :(
                             <div>
