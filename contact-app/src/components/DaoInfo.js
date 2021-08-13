@@ -124,7 +124,7 @@ static defaultProps={
             final_submit: true
         })
         this.props.onFinalCreate(info);
-        // onRemove(info.id)
+        onRemove(info.id)
         alert(`form 제출 성공!`);
      
         
@@ -226,7 +226,7 @@ static defaultProps={
                     ):(
                         <form onSubmit={this.handleFormSubmit}>                                
                             
-                            <Table color = 'red' key='red' textAlign='center'>
+                            <Table color = 'blue' textAlign='center'>
                                 <Table.Header>
                                 <Table.Row>
                                     <Table.HeaderCell width={2.5}>telegram_id_rep</Table.HeaderCell>
@@ -251,9 +251,30 @@ static defaultProps={
                                     <Table.Cell>
                                         {
                                             final_submit?
-                                            <h3>Submitted</h3>
+                                            (
+                                                <ButtonForDetail 
+                                                    
+                                                    id = {id}
+                                                    telegram_id_rep={telegram_id_rep}
+                                                    eth_address={eth_address}
+                                                    underrating_ratio={underrating_ratio}
+                                                    price_collapse_ratio={price_collapse_ratio}
+                                                    consent_limit={consent_limit}
+                                                    index_weight={index_weight}
+                                                />)
                                             :
                                             (
+                                                <button type="submit" >FINAL SUBMIT</button>
+                                            )
+                                        }
+                                    </Table.Cell>
+                                </Table.Row>
+                                </Table.Body>
+                            </Table>
+                                {
+                                    final_submit?
+                                    (""):
+                                        (
                                             <div>
                                                 <button onClick={this.handleRemove}>삭제
                                                 </button>
@@ -262,34 +283,12 @@ static defaultProps={
                                                         editing? "적용":"수정"
                                                     }
                                                 </button>
-                                            
-                                            <button type="submit" >FINAL SUBMIT</button>
                                             </div>
-                                            )
-                                        }
-                                    </Table.Cell>
-
-                                </Table.Row>
-                                </Table.Body>
-                            </Table>
+                                        )
+                                }
                         </form>
                     )
                 }
-                    {
-                        final_submit?
-                            (
-                            <ButtonForDetail 
-                                
-                                id = {id}
-                                telegram_id_rep={telegram_id_rep}
-                                eth_address={eth_address}
-                                underrating_ratio={underrating_ratio}
-                                price_collapse_ratio={price_collapse_ratio}
-                                consent_limit={consent_limit}
-                                index_weight={index_weight}
-                            />)
-                        :("")
-                    }
             </div>
         );
     }

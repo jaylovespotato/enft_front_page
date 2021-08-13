@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import PageMain from './components/PageMain';
+import PageMain from './pages/PageMain';
+import PageDaoDetail from './pages/PageDaoDetail';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import PageDaoDetail from './components/PageDaoDetail';
+
 
 
 

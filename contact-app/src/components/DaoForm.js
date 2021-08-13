@@ -48,19 +48,27 @@ class DaoForm extends Component {
 
         return (
             <div style={style} align='left'>
-                    <h1 >#1. Proposal</h1>
+                    <h2><i>#1. PROPOSAL</i></h2>
+                    <input 
+                                        type = "hidden"                             
+                                        name="final_submit"
+                                        value={this.state.final_submit} />
                     <br></br>
                 <Form onSubmit={this.handleSubmit}>
-                    <Table color = 'blue' textAlign='center'>
+                    <Table color='red' textAlign='center'>
                         <Table.Header>
                             <Table.Row>
-                                <Table.HeaderCell width={2.5}>telegram_id_rep</Table.HeaderCell>
+                                <Table.HeaderCell width={2.5}>
+                                    <Form.Field required>
+                                        <label>sdfsdf</label>
+                                        <Input placeholder="dd"/>
+                                    </Form.Field>
+                                </Table.HeaderCell>
                                 <Table.HeaderCell width={2.5}>eth_address</Table.HeaderCell>
                                 <Table.HeaderCell width={2.5}>underrating_ratio</Table.HeaderCell>
                                 <Table.HeaderCell width={2.5}>price_collapse_ratio</Table.HeaderCell>
                                 <Table.HeaderCell width={2.5}>consent_limit</Table.HeaderCell>
                                 <Table.HeaderCell width={2.5}>index_weight</Table.HeaderCell>
-                                <Table.HeaderCell width={2.5}>Submitted</Table.HeaderCell>
                                 <Table.HeaderCell width={0.1}></Table.HeaderCell>
                             </Table.Row>
                         </Table.Header>
@@ -113,12 +121,7 @@ class DaoForm extends Component {
                                         value={this.state.index_weight}
                                     />
                                 </Table.Cell>
-                                <br></br>
-                                Not Yet
-                                    <input 
-                                        type = "hidden"                             
-                                        name="final_submit"
-                                        value={this.state.final_submit} />
+
                                 <Table.Cell>
                                     <button type="submit">PROPOSAL</button>
                                 </Table.Cell>
