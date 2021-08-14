@@ -1,7 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
+import { Table, Button, Form} from 'semantic-ui-react';
 import { post } from 'axios';
-import { Table } from 'semantic-ui-react';
-import ButtonForDetail from './ButtonForDetail';
+
+import ButtonForDetail from '../pages/ButtonForDetail';
+
 
 
 class DaoInfo extends Component {
@@ -109,27 +111,21 @@ static defaultProps={
 
     handleFormSubmit = (e)=> {
         const {info, onRemove} = this.props;
-        function confirmModal(){
-            if (window.confirm("정말 제출을 완료하시겠습니까? 제출을 하시면, 더 이상 변경/삭제가 불가능합니다.")) {
-            } 
+
+        if (window.confirm("Once be submitted, it cannot be edited/deleted. Are you sure to submit?")) {
+            e.preventDefault();
+            this.addFormSet().then((response) => {
+                console.log(response.data);
+            });
+            this.setState({
+                final_submit: true
+            })
+            this.props.onFinalCreate(info);
+            onRemove(info.id)
+            alert(`form 제출 성공!`);
         }
-
-        confirmModal();
-
-        e.preventDefault();
-        this.addFormSet().then((response) => {
-            console.log(response.data);
-        });
-        this.setState({
-            final_submit: true
-        })
-        this.props.onFinalCreate(info);
-        onRemove(info.id)
-        alert(`form 제출 성공!`);
-     
         
     }
-
 
     render() {
         
@@ -153,21 +149,22 @@ static defaultProps={
             padding: '2rem',
             margin: '0rem 0rem 1rem 0rem',
         }
-
+        
         return (
             <div style={style} align='center'>
                     
                 {
                     editing ? (
-                        <Table textAlign='center'>
+                        <Table color = 'blue' textAlign='center'>
                             <Table.Header>
                                 <Table.Row>
                                     <Table.HeaderCell>telegram_id_rep</Table.HeaderCell>
                                     <Table.HeaderCell>eth_address</Table.HeaderCell>
-                                    <Table.HeaderCell>underrating_ratio</Table.HeaderCell>
-                                    <Table.HeaderCell>price_collapse_ratio</Table.HeaderCell>
-                                    <Table.HeaderCell>consent_limit</Table.HeaderCell>
-                                    <Table.HeaderCell>index_weight</Table.HeaderCell>
+                                    <Table.HeaderCell>underrating_ratio(%)</Table.HeaderCell>
+                                    <Table.HeaderCell>price_collapse_ratio(%)</Table.HeaderCell>
+                                    <Table.HeaderCell>consent_limit(%)</Table.HeaderCell>
+                                    <Table.HeaderCell>index_weight(%)</Table.HeaderCell>
+                                    <Table.HeaderCell></Table.HeaderCell>
                                     
 
                                 </Table.Row>
@@ -175,21 +172,22 @@ static defaultProps={
 
                             <Table.Body>
                                 <Table.Row>
-                                    <Table.Cell>
+                                    <Table.Cell width={2.5}>
                                         <input 
                                             name="telegram_id_rep"
                                             onChange={this.handleChange}
                                             value={this.state.telegram_id_rep}
+                                            
                                         />
                                     </Table.Cell>
-                                    <Table.Cell>
+                                    <Table.Cell width={2.5}>
                                         <input 
                                             name="eth_address"
                                             onChange={this.handleChange}
                                             value={this.state.eth_address}
                                         />
                                     </Table.Cell>
-                                    <Table.Cell>
+                                    <Table.Cell width={2.5}>
                                         <input 
                                             name="underrating_ratio"
                                             onChange={this.handleChange}
@@ -197,26 +195,29 @@ static defaultProps={
                                         />
 
                                     </Table.Cell>
-                                    <Table.Cell>
+                                    <Table.Cell width={2.5}>
                                         <input 
                                             name="price_collapse_ratio"
                                             onChange={this.handleChange}
                                             value={this.state.price_collapse_ratio}
                                         />
                                     </Table.Cell>
-                                    <Table.Cell>
+                                    <Table.Cell width={2.5}>
                                         <input 
                                             name="consent_limit"
                                             onChange={this.handleChange}
                                             value={this.state.consent_limit}
                                     />
                                     </Table.Cell>
-                                    <Table.Cell>
+                                    <Table.Cell width={2.5}>
                                         <input 
                                             name="index_weight"
                                             onChange={this.handleChange}
                                             value={this.state.index_weight}
                                     />
+                                    </Table.Cell>
+                                    <Table.Cell width={1.5}>
+                                        <Button inverted color='blue' onClick = {this.handleToggleEdit}>APPLY</Button>
                                     </Table.Cell>
                                 </Table.Row>
                             </Table.Body>
@@ -224,18 +225,19 @@ static defaultProps={
                         
                         
                     ):(
-                        <form onSubmit={this.handleFormSubmit}>                                
+                        
+                        <Form onSubmit={this.handleFormSubmit}>                                
                             
                             <Table color = 'blue' textAlign='center'>
                                 <Table.Header>
                                 <Table.Row>
                                     <Table.HeaderCell width={2.5}>telegram_id_rep</Table.HeaderCell>
                                     <Table.HeaderCell width={2.5}>eth_address</Table.HeaderCell>
-                                    <Table.HeaderCell width={2.5}>underrating_ratio</Table.HeaderCell>
-                                    <Table.HeaderCell width={2.5}>price_collapse_ratio</Table.HeaderCell>
-                                    <Table.HeaderCell width={2.5}>consent_limit</Table.HeaderCell>
-                                    <Table.HeaderCell width={2.5}>index_weight</Table.HeaderCell>
-                                    <Table.HeaderCell width={3}> </Table.HeaderCell>
+                                    <Table.HeaderCell width={2.5}>underrating_ratio(%)</Table.HeaderCell>
+                                    <Table.HeaderCell width={2.5}>price_collapse_ratio(%)</Table.HeaderCell>
+                                    <Table.HeaderCell width={2.5}>consent_limit(%)</Table.HeaderCell>
+                                    <Table.HeaderCell width={2.5}>index_weight(%)</Table.HeaderCell>
+                                    <Table.HeaderCell width={1.5}> </Table.HeaderCell>
 
                                 </Table.Row>
                                 </Table.Header>
@@ -248,45 +250,49 @@ static defaultProps={
                                     <Table.Cell>{price_collapse_ratio}</Table.Cell>
                                     <Table.Cell>{consent_limit}</Table.Cell>
                                     <Table.Cell>{index_weight}</Table.Cell>
-                                    <Table.Cell>
+                                    
                                         {
                                             final_submit?
                                             (
-                                                <ButtonForDetail 
-                                                    
-                                                    id = {id}
-                                                    telegram_id_rep={telegram_id_rep}
-                                                    eth_address={eth_address}
-                                                    underrating_ratio={underrating_ratio}
-                                                    price_collapse_ratio={price_collapse_ratio}
-                                                    consent_limit={consent_limit}
-                                                    index_weight={index_weight}
-                                                />)
+                                            "")
                                             :
                                             (
-                                                <button type="submit" >FINAL SUBMIT</button>
+                                                <Table.Cell>
+                                                <div>
+                                                    <Button.Group size='medium'>
+                                                    <Button inverted color='blue' onClick = {this.handleToggleEdit}>EDIT
+                                                    </Button>
+                                                    <Button.Or />
+                                                    <Button color='red' onClick={this.handleRemove}>DELETE</Button>
+                                                    </Button.Group>
+                                                </div>
+                                                </Table.Cell>
                                             )
                                         }
-                                    </Table.Cell>
+                                    
                                 </Table.Row>
                                 </Table.Body>
                             </Table>
                                 {
                                     final_submit?
-                                    (""):
-                                        (
-                                            <div>
-                                                <button onClick={this.handleRemove}>삭제
-                                                </button>
-                                                <button onClick = {this.handleToggleEdit}>
-                                                    {
-                                                        editing? "적용":"수정"
-                                                    }
-                                                </button>
-                                            </div>
-                                        )
+                                    (<ButtonForDetail 
+                                                    
+                                        id = {id}
+                                        telegram_id_rep={telegram_id_rep}
+                                        eth_address={eth_address}
+                                        underrating_ratio={underrating_ratio}
+                                        price_collapse_ratio={price_collapse_ratio}
+                                        consent_limit={consent_limit}
+                                        index_weight={index_weight}
+                                    />)
+                                    :
+                                    (
+                                    <div>
+                                         <Button color='blue'>FINAL SUBMIT</Button>
+                                    </div>
+                                    )
                                 }
-                        </form>
+                        </Form>
                     )
                 }
             </div>
