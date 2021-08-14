@@ -8,11 +8,6 @@ import DaoInfoList from '../components/DaoInfoList';
 import FinalDaoList from '../components/FinalDaoList';
 
 
-
-
-
-
-
 class PageMain extends Component {
 
   id=1;
