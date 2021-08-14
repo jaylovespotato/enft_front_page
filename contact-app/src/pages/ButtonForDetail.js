@@ -37,7 +37,7 @@ class ButtonForDetail extends Component {
                                 })
                             }
                             }>
-                                VIEW DETAIl
+                                VIEW DETAIL
                 </Button>
             </div>
         );

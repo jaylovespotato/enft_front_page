@@ -39,7 +39,7 @@ class EstimateChart extends Component{
           {
             type: 'line',
             label: 'Purchased Price',
-            borderWidth: 3, // 테두리 두께
+            borderWidth: 1, // 테두리 두께
             data: [3.2, 3.2, 3.2, 3.2, 3.2, 3.2, 3.2],
             backgroundColor:['rgb(255, 0, 0)'], // 각 막대 색
             borderColor: ['rgb(255, 0, 0)'],
