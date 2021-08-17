@@ -147,7 +147,7 @@ class PageDaoDetail extends Component {
                 <h2 align="center"><i>NFT Holdings</i></h2> 
                 <Divider />
                 <br></br>
-                    <Item.Group divided>
+                    <Item.Group divided>                                        {/* NFT_holding - on_sale */}
                         <Item>
                         <Item.Image size='large' src='/ENFT.jpg'
                         fluid
