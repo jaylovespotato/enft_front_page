@@ -3,6 +3,7 @@ import { Table, Segment, Statistic, Item, Progress, Label, Divider } from 'seman
 import PageHeader from '../components/common/PageHeader';
 import EstimateChart from '../components/common/EstimateChart';
 
+
 import axios from "axios";
 
 /// 필요한 DB
@@ -12,32 +13,44 @@ import axios from "axios";
 
 class PageDaoDetail extends Component {
 
-    // !!!!!!!!JSON 불러오기 위한 코드들!!!!!!!!!!
-    // state = { 
-    //     loading: false,
-    //     ItemList: []  // 비어있는 배열
-    //  };
+    // JSON 불러오기 위한 코드들
+    state = {
+        loading: false,
+        ItemList: []  // 비어있는 배열
+     };
 
-    //  loadItem = async () => {
-    //     axios
-    //       .get("./SearchJson.json")
-    //       .then(({ data }) => {
-    //         this.setState({ 
-    //           loading: true,
-    //           ItemList: data.Item
-    //         });
-    //       })
-    //       .catch(e => {  // API 호출이 실패한 경우
-    //         console.error(e);  // 에러표시
-    //         this.setState({  
-    //           loading: false
-    //         });
-    //       });
-    //   };
+     loadItem =  async () => {
+        await axios
+          .post("http://localhost:5000/daoDetail/", {'chat_room_id': '-443191914'},
+              {
+                // headers: {
+                //     'content-type': 'application/json',
+                //     'Access-Control-Allow-Origin': true
+                // }
+             }
+          )
+          .then(({ data }) => {
+              console.log(data)
+              // const {estimated_value, invested_value, remained_balance } = data;
+              this.setState(data)
+          })
+          .catch(e => {  // API 호출이 실패한 경우
+            console.error(e);  // 에러표시
+            this.setState({
+              loading: false
+            });
+          });
+      };
 
-    //   componentDidMount() {
-    //     this.loadItem();  // loadItem 호출
-    //   }
+      async componentDidMount() {
+          console.log("mounted")
+
+          await this.loadItem();
+
+          console.log(this.state.estimated_value);
+
+
+      }
 
 
     render() {
@@ -63,11 +76,13 @@ class PageDaoDetail extends Component {
         
         const headerClass = "DETAIL"
         return (
+
             <Segment.Group>
                 <Segment>
                     <PageHeader headerClass={headerClass}/>
                 </Segment> 
             <Segment>
+
             <div style = {style} align ='center'>
                 <h2><i>Registered Information</i></h2>
                 <Divider />
@@ -105,7 +120,7 @@ class PageDaoDetail extends Component {
                     <Statistic.Group widths='five'>
                         <Statistic size="huge" color='red'>
                         <Statistic.Label>Total Value</Statistic.Label>
-                        <Statistic.Value>10.5 ETH</Statistic.Value> {/* Public_Account - whole_value */}
+                        <Statistic.Value>${this.state.estimated_value}</Statistic.Value> {/* Public_Account - whole_value */}
                 
                         </Statistic>
 
