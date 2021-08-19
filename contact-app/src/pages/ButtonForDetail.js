@@ -6,7 +6,7 @@ class ButtonForDetail extends Component {
     
     render() {
         const { id, 
-            telegram_id_rep, 
+            telegram_room_id, 
             eth_address, 
             underrating_ratio,
             price_collapse_ratio,
@@ -27,7 +27,7 @@ class ButtonForDetail extends Component {
                                     pathname: `/detail/${id}`,
                                     state: {
                                             id: id,
-                                            telegram_id_rep: telegram_id_rep,
+                                            telegram_room_id: telegram_room_id,
                                             eth_address: eth_address,
                                             underrating_ratio: underrating_ratio,
                                             price_collapse_ratio: price_collapse_ratio,

@@ -11,7 +11,7 @@ class DaoInfo extends Component {
     state = {
         final_submit: false,
         editing: false,
-        telegram_id_rep: '',
+        telegram_room_id: '',
         eth_address: '',
         // buy - voting threshold on evaluated-price
         underrating_ratio: '',
@@ -50,7 +50,7 @@ static defaultProps={
         const { info, onUpdate } = this.props;
         if (this.state.editing){
             onUpdate(info.id, {
-                telegram_id_rep: this.state.telegram_id_rep,
+                telegram_room_id: this.state.telegram_room_id,
                 eth_address: this.state.eth_address,
                 underrating_ratio: this.state.underrating_ratio,
                 price_collapse_ratio: this.state.price_collapse_ratio,
@@ -62,7 +62,7 @@ static defaultProps={
             console.log(onUpdate)
         } else{
             this.setState({
-                telegram_id_rep: info.telegram_id_rep,
+                telegram_room_id: info.telegram_room_id,
                 eth_address: info.eth_address,
                 underrating_ratio: info.underrating_ratio,
                 price_collapse_ratio: info.price_collapse_ratio,
@@ -94,7 +94,7 @@ static defaultProps={
         const url = '/asd';
         const formData = new FormData();
 
-        formData.append('telegram_id_rep', info.telegram_id_rep);
+        formData.append('telegram_room_id', info.telegram_room_id);
         formData.append('eth_address', info.eth_address);
         formData.append('underrating_ratio', info.underrating_ratio);
         formData.append('price_collapse_ratio', info.price_collapse_ratio);
@@ -131,7 +131,7 @@ static defaultProps={
         
         const {
             id,
-            telegram_id_rep, 
+            telegram_room_id, 
             eth_address, 
             underrating_ratio, 
             price_collapse_ratio,
@@ -158,7 +158,7 @@ static defaultProps={
                         <Table color = 'blue' textAlign='center'>
                             <Table.Header>
                                 <Table.Row>
-                                    <Table.HeaderCell>telegram_id_rep</Table.HeaderCell>
+                                    <Table.HeaderCell>telegram_room_id</Table.HeaderCell>
                                     <Table.HeaderCell>eth_address</Table.HeaderCell>
                                     <Table.HeaderCell>underrating_ratio(%)</Table.HeaderCell>
                                     <Table.HeaderCell>price_collapse_ratio(%)</Table.HeaderCell>
@@ -174,9 +174,9 @@ static defaultProps={
                                 <Table.Row>
                                     <Table.Cell width={2.5}>
                                         <input 
-                                            name="telegram_id_rep"
+                                            name="telegram_room_id"
                                             onChange={this.handleChange}
-                                            value={this.state.telegram_id_rep}
+                                            value={this.state.telegram_room_id}
                                             
                                         />
                                     </Table.Cell>
@@ -231,7 +231,7 @@ static defaultProps={
                             <Table color = 'blue' textAlign='center'>
                                 <Table.Header>
                                 <Table.Row>
-                                    <Table.HeaderCell width={2.5}>telegram_id_rep</Table.HeaderCell>
+                                    <Table.HeaderCell width={2.5}>telegram_room_id</Table.HeaderCell>
                                     <Table.HeaderCell width={2.5}>eth_address</Table.HeaderCell>
                                     <Table.HeaderCell width={2.5}>underrating_ratio(%)</Table.HeaderCell>
                                     <Table.HeaderCell width={2.5}>price_collapse_ratio(%)</Table.HeaderCell>
@@ -244,7 +244,7 @@ static defaultProps={
 
                                 <Table.Body>
                                 <Table.Row>
-                                    <Table.Cell>{telegram_id_rep}</Table.Cell>
+                                    <Table.Cell>{telegram_room_id}</Table.Cell>
                                     <Table.Cell>{eth_address}</Table.Cell>
                                     <Table.Cell>{underrating_ratio}</Table.Cell>
                                     <Table.Cell>{price_collapse_ratio}</Table.Cell>
@@ -278,7 +278,7 @@ static defaultProps={
                                     (<ButtonForDetail 
                                                     
                                         id = {id}
-                                        telegram_id_rep={telegram_id_rep}
+                                        telegram_room_id={telegram_room_id}
                                         eth_address={eth_address}
                                         underrating_ratio={underrating_ratio}
                                         price_collapse_ratio={price_collapse_ratio}

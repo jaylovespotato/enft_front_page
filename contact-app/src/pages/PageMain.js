@@ -16,7 +16,7 @@ class PageMain extends Component {
   information:[
     {
       id:0,
-      telegram_id_rep: '부산감자',
+      telegram_room_id: '-12345',
       eth_address: '0x23123',
       underrating_ratio: '30',
       price_collapse_ratio: '30',
@@ -86,7 +86,7 @@ handleUpdate = (id, data)=>{
 
 
     const filteredFinalList = finalinformation.filter(
-      info => ((info.telegram_id_rep.indexOf(keyword) !== -1)|(String(info.id) === keyword))
+      info => ((info.telegram_room_id.indexOf(keyword) !== -1)|(String(info.id) === keyword))
     );
 
 

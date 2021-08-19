@@ -20,10 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d993beea-ea28-465c-a82f-675a88b9d31c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DaoForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DaoForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DaoInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DaoInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ButtonForDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ButtonForDetail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/PageDaoDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PageDaoDetail.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/PageMain.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PageMain.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +52,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -60,7 +63,9 @@
       <option name="presentableId" value="Default" />
       <updated>1629306257950</updated>
       <workItem from="1629306259823" duration="12000" />
-      <workItem from="1629306306910" duration="3030000" />
+      <workItem from="1629306306910" duration="4152000" />
+      <workItem from="1629388227181" duration="762000" />
+      <workItem from="1629388992610" duration="1163000" />
     </task>
     <servers />
   </component>
